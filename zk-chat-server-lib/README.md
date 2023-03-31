@@ -25,7 +25,7 @@ serverConfig: IZKServerConfig = {
     dnConnectionString: "mongodb://localhost:27017",
     serverPort: 8080,
     socketServerPort: 8081,
-    merkleTreeLevels: 15,
+    merkleTreeLevels: 16,
     spamThreshold: 2,
     epochAllowedDelayThreshold: 20,
     interepSyncIntervalSeconds: 300,

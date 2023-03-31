@@ -11,6 +11,7 @@
         "skipLibCheck": true,
         "declaration": true,
         "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
         "declarationDir": "types",
         "typeRoots": [
             "node_modules/@types",

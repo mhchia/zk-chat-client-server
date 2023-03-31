@@ -1,5 +1,8 @@
 import { poseidon } from "circomlib";
-import { RLN, genExternalNullifier, generateMerkleProof, MerkleProof, RLNFullProof, StrBigInt } from "@zk-kit/protocols"
+import { genExternalNullifier, generateMerkleProof } from "@zk-kit/protocols"
+import { MerkleProof } from "@zk-kit/incremental-merkle-tree";
+import { RLN, RLNFullProof, StrBigInt } from "rlnjs";
+import { RLNPCD, RLNPCDPackage } from '../rln-pcd';
 
 /**
  * A wrapper class for circomlib & semaphore library functions.
@@ -30,14 +33,15 @@ export default class Hasher {
      * Extracts the secret by looking at X & Y shares.
      */
     public retrieveSecret(sharesX: bigint[], sharesY: bigint[]): bigint {
-        return RLN.retrieveSecret(sharesX[0], sharesX[1], sharesY[0], sharesY[1]);
+        return RLN._shamirRecovery(sharesX[0], sharesX[1], sharesY[0], sharesY[1]);
     }
 
     /**
      * Verifies a RLN proof using the verifier key.
      */
     public async verifyProof(verifierKey: any, proof: RLNFullProof): Promise<boolean> {
-        return await RLN.verifyProof(verifierKey, proof);
+        const rlnPCD = RLNPCD.fromRLNFullProof(proof);
+        return await RLNPCDPackage.verify(rlnPCD);
     }
 
     /**

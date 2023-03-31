@@ -15,5 +15,6 @@
     "server": "yarn workspace server start",
     "app": "yarn workspace app start",
     "test-server": "yarn workspace server test"
-  }
+  },
+  "dependencies": {}
 }

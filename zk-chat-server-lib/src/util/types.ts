@@ -1,4 +1,4 @@
-import { RLNFullProof } from '@zk-kit/protocols';
+import { RLNFullProof } from 'rlnjs';
 
 /**
  * The message that each client sends to the server
@@ -40,9 +40,9 @@ export const constructRLNMessage = (parsedJson: any): RLNMessage => {
 }
 
 export const getNullifierFromFullProof = (proof: RLNFullProof): string => {
-    return proof.publicSignals.internalNullifier.toString();
+    return proof.snarkProof.publicSignals.internalNullifier.toString();
 }
 
 export const getYShareFromFullProof = (proof: RLNFullProof): string => {
-    return proof.publicSignals.yShare.toString();
+    return proof.snarkProof.publicSignals.yShare.toString();
 }

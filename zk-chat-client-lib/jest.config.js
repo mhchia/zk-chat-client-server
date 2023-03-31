@@ -20,8 +20,9 @@ module.exports = {
         '!src/hasher.ts'
     ],
     setupFilesAfterEnv: [
-        './tests/jest.setup.ts', 
-        'fake-indexeddb/auto'
+        './tests/jest.setup.ts',
+        'fake-indexeddb/auto',
+        './jest.env.js',
     ],
     coveragePathIgnorePatterns: [
         "node_modules",

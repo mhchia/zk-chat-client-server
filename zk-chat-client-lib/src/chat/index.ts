@@ -1,4 +1,4 @@
-import { RLNFullProof } from "@zk-kit/protocols";
+import { RLNFullProof } from "rlnjs";
 import { IChatHistoryDB, IMessage, ITimeRangeMessages } from './interfaces';
 import { ICryptography } from '../crypto/interfaces';
 import { ServerCommunication } from '../communication/index';
@@ -58,7 +58,7 @@ class ChatManager {
 
         const storageArtifacts = {
             leaves: this.profile_manager.getLeaves(),
-            depth: 15,
+            depth: 16,
             leavesPerNode: 2
         };
 
