@@ -9,7 +9,8 @@ import {
   init,
   receive_message,
   recover_profile,
-  IRooms
+  IRooms,
+  injectIdentityKeeper
 } from "zk-chat-client";
 import { serverUrl, socketUrl } from "../../constants/constants";
 import { generateProof } from "../../util/util";
@@ -76,6 +77,7 @@ const RecoverModal = ({
   };
 
   const initializeApp = async () => {
+    injectIdentityKeeper()
     try {
       await init({
         serverUrl: serverUrl,

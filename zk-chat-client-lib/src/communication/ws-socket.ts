@@ -1,7 +1,7 @@
 import { serverTopics } from ".";
 import { SocketClient } from "./interfaces";
 
-const WebSocket = require('ws');
+import WebSocket from "ws";
 
 /**
  * WS-based socket client, intended to be used for testing purposes or when the library needs to be used independencly of the browser application.

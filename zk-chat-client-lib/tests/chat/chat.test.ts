@@ -10,7 +10,7 @@ import { ICryptography, IKeyPair } from '../../src/crypto/interfaces';
 import { ServerCommunication } from '../../src/communication';
 import { IChatHistoryDB, IMessage } from '../../src/chat/interfaces';
 import { deepClone } from '../../src/util';
-import { IFuncGenerateProof, StorageArtifacts } from "src";
+import { IFuncGenerateProof, IStorageArtifacts } from "src";
 import { utils } from "ffjavascript";
 
 const ws = require("ws");
@@ -175,7 +175,7 @@ describe('Chat test', () => {
     let chatManager: ChatManager;
     let chatDB: IChatHistoryDB;
 
-    const proof_generator_callback: IFuncGenerateProof = async (epoch: string, signal: string, storage_artifacts: StorageArtifacts, rln_identitifer: string) => {
+    const proof_generator_callback: IFuncGenerateProof = async (epoch: string, signal: string, storage_artifacts: IStorageArtifacts, rln_identitifer: string) => {
         return {
             snarkProof: {
                 proof: {

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router"
 import styled from "styled-components"
 import * as Colors from "../../constants/colors"
 import RecoverModal from "../Modals/recoverModal"
-import { init, receive_message } from "zk-chat-client"
+import { init, receive_message, injectIdentityKeeper, IIdentityKeeper } from "zk-chat-client"
 import { useDispatch } from "react-redux"
 import {
   addMessageToRoomAction,
@@ -51,6 +51,7 @@ const RegisterOrRecover = () => {
   }
 
   const initializeApp = async () => {
+    await injectIdentityKeeper()
     try {
       const identityCommitment = await getActiveIdentity()
       await init(
@@ -75,11 +76,9 @@ const RegisterOrRecover = () => {
   }
 
   const getActiveIdentity = async () => {
-    console.info("getting the identity from zk-keeper")
-    const { injected } = window as any
-    const client = await injected.connect()
-    const id = await client.getActiveIdentity(1, 2)
-    return id
+    const idKeeper = ((window as any).idKeeper as IIdentityKeeper)
+    const id = await idKeeper.getIdentityCommitment()
+    return String(id)
   }
 
   const receiveMessageCallback = (message: any, roomId: string) => {

@@ -46,7 +46,7 @@ class WebCryptography implements ICryptography {
         }
         throw "Could not generate symmetric key";
     }
-    
+
     /**
      * Generates a RSA key pair with a modulus of RSA_MODULUS_LENGTH
      */
@@ -63,7 +63,7 @@ class WebCryptography implements ICryptography {
         );
 
         if (keyPair.publicKey && keyPair.privateKey) {
-            
+
             const exportedPublicKey: ArrayBuffer = await window.crypto.subtle.exportKey("spki", keyPair.publicKey);
             const exportedPrivateKey: ArrayBuffer = await window.crypto.subtle.exportKey("pkcs8", keyPair.privateKey);
 
@@ -101,8 +101,8 @@ class WebCryptography implements ICryptography {
     }
 
     /**
-     * Using the DH algorithm, this method derives a shared secret from the provided source private key and the target 
-     * user's public key. 
+     * Using the DH algorithm, this method derives a shared secret from the provided source private key and the target
+     * user's public key.
      * The shared secret will be used to encrypt & decrypt the data.
      */
     public async deriveSharedSecretKey(sourcePrivateKey: string, targetPublicKey: string): Promise<string> {
@@ -155,13 +155,13 @@ class WebCryptography implements ICryptography {
 
         const iv_substring = symmetricKey.substring(0, 10);
 
-        
+
         const encrypted: ArrayBuffer = await window.crypto.subtle.encrypt(
             {
                 name: "AES-GCM",
                 iv: this.str2ab(iv_substring)
-            }, 
-            importedSymmetricKey, 
+            },
+            importedSymmetricKey,
             this.str2ab(message));
 
         return btoa(this.ab2str(encrypted));
@@ -200,9 +200,9 @@ class WebCryptography implements ICryptography {
     public async encryptMessageAsymmetric(message: string, publicKey: string): Promise<string> {
         const importedPublicKey = await window.crypto.subtle.importKey(
             "spki",
-            this.str2ab(atob(publicKey)), 
+            this.str2ab(atob(publicKey)),
             { name: "RSA-OAEP", hash: "SHA-256" },
-            true, 
+            true,
             ['encrypt']);
 
         const encryptedBytes: ArrayBuffer = await window.crypto.subtle.encrypt(
@@ -215,7 +215,7 @@ class WebCryptography implements ICryptography {
 
         return btoa(this.ab2str(encryptedBytes));
     }
-    
+
     /**
      * Decrypts a message using a provided public key.
      * Throws an exception if the key is invalid.

@@ -17,6 +17,7 @@ import KeyExchangeManager from './key-exchange';
 import { IChatHistoryDB, IMessage } from './chat/interfaces';
 import { LocalChatDB } from './chat/db';
 import { IFuncGenerateProof, IServerConfig } from './types';
+import { LocalIdentityKeeper } from './identity-keeper';
 
 let communication: ServerCommunication | null = null;
 let generated_storage_provider: StorageProvider | null = null;
@@ -27,6 +28,15 @@ let chat_manager: ChatManager;
 let message_db: IChatHistoryDB;
 
 let get_proof_callback: IFuncGenerateProof;
+
+const injectIdentityKeeper = async () => {
+    const idKeeper = await LocalIdentityKeeper.load();
+    console.log(`!@# Injecting identity keeper = `, idKeeper)
+    if (typeof window !== 'undefined') {
+        (window as any).idKeeper = idKeeper;
+        console.log(`!@# Injected identity keeper = `, (window as any).idKeeper);
+    }
+}
 
 const init = async (
     server_config: IServerConfig,
@@ -102,7 +112,9 @@ const get_rooms = async (): Promise<IRooms> => {
 const send_message = async (chat_room_id: string, raw_message: string) => {
     if (communication == null)
         throw "init() not called";
+    console.log(`!@# send_message: chat_room_id = ${chat_room_id}, raw_message = ${raw_message}`);
     await chat_manager.sendMessage(chat_room_id, raw_message, get_proof_callback);
+    console.log(`!@# send_message: sent`);
 }
 
 const receive_message = async(receive_msg_callback: (message: IMessage, chat_room_id: string) => void) => {
@@ -402,6 +414,7 @@ const syncRlnData = (event: string) => {
 }
 
 export {
+    injectIdentityKeeper,
     init,
     get_rooms,
     send_message,
@@ -432,6 +445,7 @@ export {
     get_username
 }
 export * from "./types"
+export * from "./identity-keeper"
 export * from "./chat/interfaces"
 export * from "./room/interfaces"
 export * from "./profile/interfaces"
