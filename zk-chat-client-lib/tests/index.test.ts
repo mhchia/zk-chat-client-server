@@ -31,7 +31,7 @@ import {
     get_username,
     get_user_handle,
     IFuncGenerateProof,
-    StorageArtifacts
+    IStorageArtifacts
 } from '../src/index';
 
 import ProfileManager from '../src/profile';
@@ -170,7 +170,7 @@ class LocalTestCryptography implements ICryptography {
 
 describe('Test main', () => {
 
-    const proof_generator_callback: IFuncGenerateProof = async (epoch: string, signal: string, storage_artifacts: StorageArtifacts, rln_identitifer: string): Promise<RLNFullProof> => {
+    const proof_generator_callback: IFuncGenerateProof = async (epoch: string, signal: string, storage_artifacts: IStorageArtifacts, rln_identitifer: string): Promise<RLNFullProof> => {
         return {
             snarkProof: {
                 proof: {

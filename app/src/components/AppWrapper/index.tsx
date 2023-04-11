@@ -19,7 +19,7 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { generateProof } from "../../util/util";
 import "react-toastify/dist/ReactToastify.css"
-import { init, receive_message, get_rooms, IRooms } from 'zk-chat-client';
+import { init, receive_message, get_rooms, IRooms, injectIdentityKeeper } from 'zk-chat-client';
 import { useAppSelector } from "../../redux/hooks/useAppSelector"
 
 const AppWrapper = () => {
@@ -37,6 +37,7 @@ const AppWrapper = () => {
   }, [])
 
   const initializeApp = async () => {
+    injectIdentityKeeper()
     try {
       await init({
         serverUrl: serverUrl,

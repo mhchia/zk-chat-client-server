@@ -19,4 +19,5 @@
             "./node_modules/@types"
         ],
     },
+    "references": [{ "path": "./app" }, { "path": "./zk-chat-client-lib" }]
 }

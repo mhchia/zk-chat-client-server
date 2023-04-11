@@ -14,7 +14,8 @@
     "build": "yarn workspaces run build",
     "server": "yarn workspace server start",
     "app": "yarn workspace app start",
-    "test-server": "yarn workspace server test"
+    "test-server": "yarn workspace server test",
+    "clean": "rm -rf ./**/node_modules"
   },
   "dependencies": {}
 }
