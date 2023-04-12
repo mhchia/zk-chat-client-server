@@ -30,8 +30,8 @@ let message_db: IChatHistoryDB;
 
 let get_proof_callback: IFuncGenerateProof;
 
-const injectIdentityKeeper = () => {
-    const idKeeper = new LocalIdentityKeeper(new Identity("123"));
+const injectIdentityKeeper = async () => {
+    const idKeeper = await LocalIdentityKeeper.load();
     console.log(`!@# Injecting identity keeper = `, idKeeper)
     if (typeof window !== 'undefined') {
         (window as any).idKeeper = idKeeper;

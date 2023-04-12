@@ -33,7 +33,7 @@ const nodePlugins = [
     commonjs(),
     // Parse JSON files and make them ES modules. Required when bundling circomlib
     json(),
-    nodePolyfills(),
+    // nodePolyfills(),
 ]
 
 
@@ -59,7 +59,7 @@ export default [
     // {
     //   input,
     //   output: { file: pkg.exports.require, format: 'cjs', banner },
-    // //   external: Object.keys(pkg.dependencies),
+    //   external: Object.keys(pkg.dependencies),
     //   plugins: [
     //     cleaner({
     //       targets: [
@@ -74,11 +74,6 @@ export default [
       input,
       output: { file: pkg.exports.import, format: 'es', banner },
       plugins: [
-        cleaner({
-            targets: [
-              './dist/',
-            ],
-        }),
         ...browserPlugins,
       ],
     },
