@@ -6,7 +6,7 @@ import { ICryptography } from '../crypto/interfaces';
 import { ServerCommunication } from '../communication/index';
 import ProfileManager from "../profile";
 import Hasher from "../hasher";
-import { IFuncGenerateProof } from "src/types";
+import { IFuncGenerateProof } from "../types";
 
 /**
  * The core component that is responsible for creating valid ZK proofs for a message, encrypting and dispatching it, as well as receiving and decrypting messages

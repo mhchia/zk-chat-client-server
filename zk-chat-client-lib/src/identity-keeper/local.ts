@@ -6,7 +6,7 @@ import { IStorageArtifacts } from "../types";
 import { RLNFullProof } from "rlnjs";
 import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd";
 import { generateMerkleProof } from "@zk-kit/protocols";
-import { LocalStorageProvider } from "src/storage/local_storage";
+import { LocalStorageProvider } from "../storage/local_storage";
 
 
 const LOCAL_STORAGE_KEY = "zk-chat-local-identity";

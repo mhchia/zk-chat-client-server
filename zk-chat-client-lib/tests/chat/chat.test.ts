@@ -10,7 +10,7 @@ import { ICryptography, IKeyPair } from '../../src/crypto/interfaces';
 import { ServerCommunication } from '../../src/communication';
 import { IChatHistoryDB, IMessage } from '../../src/chat/interfaces';
 import { deepClone } from '../../src/util';
-import { IFuncGenerateProof, IStorageArtifacts } from "src";
+import { IFuncGenerateProof, IStorageArtifacts } from "../../src";
 import { utils } from "ffjavascript";
 
 const ws = require("ws");

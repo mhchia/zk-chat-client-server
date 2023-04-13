@@ -1,4 +1,4 @@
-import { IFuncGenerateProof } from "src/types";
+import { IFuncGenerateProof } from "../types";
 import ChatManager, { IProofData } from "../chat";
 import { ServerCommunication } from "../communication";
 import { ICryptography } from "../crypto/interfaces";

@@ -31,10 +31,10 @@ let get_proof_callback: IFuncGenerateProof;
 
 const injectIdentityKeeper = async () => {
     const idKeeper = await LocalIdentityKeeper.load();
-    console.log(`!@# Injecting identity keeper = `, idKeeper)
+    console.log('Injecting identity keeper');
     if (typeof window !== 'undefined') {
         (window as any).idKeeper = idKeeper;
-        console.log(`!@# Injected identity keeper = `, (window as any).idKeeper);
+        console.log('Injected identity keeper = ', (window as any).idKeeper);
     }
 }
 

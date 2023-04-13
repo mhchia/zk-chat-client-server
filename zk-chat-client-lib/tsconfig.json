@@ -17,19 +17,13 @@
       "node_modules/@types",
       "types"
     ],
-    "outDir": "dist/",
+    "outDir": "./dist",
     "rootDir": ".",
     "allowJs": true,
     "noImplicitAny": false,
     "types": ["react", "node"],
     "lib": ["ES2020", "DOM"]
   },
-  // "ts-node": {
-  //   "compilerOptions": {
-  //     "target": "esnext",
-  //     "module": "commonjs"
-  //   }
-  // },
   "typeAcquisition": {
     "include": [
       "jest"
