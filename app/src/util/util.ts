@@ -1,17 +1,38 @@
-import { RLNFullProof } from "rlnjs";
-import { IFuncGenerateProof, IStorageArtifacts, IIdentityKeeper } from "zk-chat-client";
+import { RLNFullProof } from "test-rlnjs";
 
+import { generateRLNProof } from "./request-passport-client";
+
+
+type IStorageArtifacts = {
+    leaves: string[],
+    depth: number,
+    leavesPerNode: number,
+};
+
+type IFuncGenerateProof = (
+    // TODO: change `string` to `bigint`
+    epoch: string,
+    signal: string,
+    storage_artifacts: IStorageArtifacts,
+    rln_identitifer: string,
+) => Promise<RLNFullProof>;
 /**
  * A callback function to generate RLN proof using the ZK-keeper plugin.
  */
-export const generateProof: IFuncGenerateProof = async(epoch: string, signal: string, storage_artifacts: IStorageArtifacts, rln_identitifer: string): Promise<RLNFullProof> => {
-    const idKeeper = ((window as any).idKeeper as IIdentityKeeper)
-    return await idKeeper.generateRLNProof(
+export const generateProof: IFuncGenerateProof = async(
+    epoch: string,
+    signal: string,
+    storage_artifacts: IStorageArtifacts,
+    rln_identitifer: string,
+): Promise<RLNFullProof> => {
+    const pcd = await generateRLNProof(
         BigInt(epoch),
         signal,
-        'circuitFiles/rln/rln.wasm',
-        'circuitFiles/rln/rln_final.zkey',
-        storage_artifacts,
         BigInt(rln_identitifer),
-    );
+        false,
+    )
+    if (!pcd) {
+        throw new Error("Failed to generate RLN proof")
+    }
+    return pcd.toRLNFullProof();
 }
