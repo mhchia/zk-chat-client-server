@@ -77,7 +77,7 @@ const RecoverModal = ({
   };
 
   const initializeApp = async () => {
-    injectIdentityKeeper()
+    // injectIdentityKeeper()
     try {
       await init({
         serverUrl: serverUrl,

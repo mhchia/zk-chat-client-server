@@ -51,7 +51,7 @@ const RegisterOrRecover = () => {
   }
 
   const initializeApp = async () => {
-    await injectIdentityKeeper()
+    // await injectIdentityKeeper()
     try {
       const identityCommitment = await getActiveIdentity()
       await init(

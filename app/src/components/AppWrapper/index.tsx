@@ -39,13 +39,13 @@ const AppWrapper = () => {
 
   const initializeApp = async () => {
     console.log("!@# before generateProof")
-    const proof = await generateProof(
-      "1",
-      "5566 is the best",
-      {depth:16, leaves:[], leavesPerNode:2},
-      "123",
-    );
-    console.log(`!@# proof=`, proof)
+    // const proof = await generateProof(
+    //   "1",
+    //   "5566 is the best",
+    //   {depth:16, leaves:[], leavesPerNode:2},
+    //   "123",
+    // );
+    // console.log(`!@# proof=`, proof)
     try {
       await init({
         serverUrl: serverUrl,
@@ -63,6 +63,7 @@ const AppWrapper = () => {
         )
       })
     } catch (error) {
+      console.log(`!@# error = `, error)
       navigate("/r-procedure")
     }
   }
